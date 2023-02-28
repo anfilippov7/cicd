@@ -39,10 +39,10 @@ jobs:
       - name: Установка python и настройка окружения
         uses: actions/setup-python@v3
         with:
-          python-version: 3.9
+          python-version: 3.9.16
 
       - name: Установка зависимостей
-        run: pip install -r reqirements.txt
+        run: pip install -r requirements.txt
 
       - name: Линтинг
         run: flake8 logistics/ --exclude logistic/migrations/
