@@ -26,7 +26,9 @@ class StockSerializer(serializers.ModelSerializer):
         positions = validated_data.pop('positions')
         stock = super().create(validated_data)
         for item in positions:
-            StockProduct.objects.create(quantity=item['quantity'], price=item['price'], product_id=item['product'].id,
+            StockProduct.objects.create(quantity=item['quantity'],
+                                        price=item['price'],
+                                        product_id=item['product'].id,
                                         stock_id=stock.id)
         return stock
 
@@ -36,13 +38,18 @@ class StockSerializer(serializers.ModelSerializer):
         data = StockProduct.objects.filter(stock_id=instance.id)
         if data:
             for item in positions:
-                StockProduct.objects.filter(stock_id=instance.id).filter(product_id=item['product'].id).\
-                    update(quantity=item['quantity'], price=item['price'], product_id=item['product'].id,
+                StockProduct.objects.filter(stock_id=instance.id).\
+                    filter(product_id=item['product'].id).\
+                    update(quantity=item['quantity'],
+                           price=item['price'],
+                           product_id=item['product'].id,
                            stock_id=stock.id)
         else:
             data = Stock.objects.filter(id=instance.id)
             if data:
                 for item in positions:
-                    StockProduct.objects.create(quantity=item['quantity'], price=item['price'],
-                                                product_id=item['product'].id, stock_id=stock.id)
+                    StockProduct.objects.create(quantity=item['quantity'],
+                                                price=item['price'],
+                                                product_id=item['product'].id,
+                                                stock_id=stock.id)
         return stock
