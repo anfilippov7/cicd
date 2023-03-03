@@ -4,5 +4,6 @@ psycopg2-binary
 gunicorn
 django_filter
 python-decouple
+python-dotenv
 flake8
-
+requests
