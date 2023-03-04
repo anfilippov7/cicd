@@ -15,7 +15,7 @@ class ProductViewSet(ModelViewSet):
 
     @action(['GET'], detail=False)
     def test(self, request):
-        return Response('HELLO Netology!')
+        return Response('HELLO Netology? the Best!')
 
 
 class StockViewSet(ModelViewSet):
